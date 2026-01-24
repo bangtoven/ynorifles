@@ -174,6 +174,18 @@ div[class]::after { content:'</div>' }
     display: none;
 }
 
+/* ironic */
+yf::before { content: 'self ' }
+yf { 
+    display: inline-block; 
+    transform: scaleX(-1);
+}
+yf::before, yf::after {
+    color:#333;
+    font-size:1em;
+}
+yf::after  { content: 'irony' }
+
 /* header */
 script[verymuchunique]::before { content: "<script src='" attr(src) "'></script>" }
 meta[name]::before { content: "<meta name='" attr(name) "' content='" attr(content) "'>" }
@@ -181,6 +193,6 @@ nav a { display:block; }
 nav::before { content:'<nav>'; }
 nav::after { content:'</nav>'; }
 
-/* flip horizontally */
+/* flip */
 html { transform: scaleX(-1) }
 body { transform: scaleX(-1) }
