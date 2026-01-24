@@ -13,61 +13,11 @@
 
 /* tags with attributes. */
 
-img {
-    margin: 0 auto;
-    max-width: 100%;
-    height: auto;
-}
-figure[src]::before {
-    content: "<img src='"attr(src)"'";
-}
-figure[src]::after {
-    content: "/>";
-}
-
-div[class]::before {
-    content: "<div class='" attr(class) "'>"
-}
-div::after {
-    content:'</div>' 
-}
-.carousel {
-    overflow-x: auto;
-    white-space: nowrap;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-}
-.carousel::before,.carousel::after { 
-    display: block;
-    position: sticky;
-    left: 0;
-}
-.carousel figure {
-    display: inline-block;
-    scroll-snap-align: center;
-    margin: 0;
-}
-.carousel::-webkit-scrollbar {
-    display: none;
-}
-
-nav { text-align:right; }
-nav a { display:block; }
-nav::before { content:'<nav>'; }
-nav::after { content:'</nav>'; }
-
  a[href]::before {
      content: "<a href='" attr(href) "'>" 
 }
  link[rel]::before {
      content: "<link rel='" attr(rel) "' type='" attr(type)"' href='" attr(href) "'>" 
-}
- script[verymuchunique]::before {
-     content: "<script src='" attr(src) "'></script>" 
-}
- meta[name]::before {
-     content: "<meta name='" attr(name) "' content='" attr(content) "'>" 
 }
 
 /* special escaping for close style */
@@ -82,7 +32,7 @@ nav::after { content:'</nav>'; }
  *::before,*::after {
      color:rgb(136, 18, 128, 0.5);
      font-weight:100;
-     font-size:1.0em 
+     font-size:0.713em 
 }
  html {
      max-width:70ch;
@@ -191,3 +141,46 @@ nav::after { content:'</nav>'; }
  strong::after {
      content:'</strong>' 
 }
+
+/* image */
+img {
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+figure[src]::before { content: "<img src='"attr(src)"'"}
+figure[src]::after { content: "/>" }
+
+div[class]::before { content: "<div class='" attr(class) "'>" }
+div[class]::after { content:'</div>' }
+.carousel {
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+.carousel::before,.carousel::after { 
+    display: block;
+    position: sticky;
+    left: 0;
+}
+.carousel figure {
+    display: inline-block;
+    scroll-snap-align: center;
+    margin: 0;
+}
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+/* header */
+script[verymuchunique]::before { content: "<script src='" attr(src) "'></script>" }
+meta[name]::before { content: "<meta name='" attr(name) "' content='" attr(content) "'>" }
+nav a { display:block; }
+nav::before { content:'<nav>'; }
+nav::after { content:'</nav>'; }
+
+/* flip horizontally */
+html { transform: scaleX(-1) }
+body { transform: scaleX(-1) }
