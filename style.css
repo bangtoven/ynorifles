@@ -148,6 +148,12 @@ ul::before { content:'<ul>' }
 ul::after { content:'</ul>' }
 li::before { content:'<li>' }
 li::after { content:'</li>' }
+ul { padding: 0 }
+li {
+    margin: 0.5ch;
+    border-bottom: 1px dotted rgba(136, 18, 128, 0.1);
+}
+p { margin: 0.5ch 0 }
 
 /* image */
 img {
