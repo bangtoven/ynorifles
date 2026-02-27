@@ -1,3 +1,3 @@
 - Forked from [html_wysiwyg](https://github.com/secretGeek/html_wysiwyg) by Leon Bambrick; maintained by Jungho Bang.
 - Code in this repository is licensed under MIT (see `/LICENSE`).
-- Photographic media in `/work` are not covered by MIT and are licensed separately (see `/work/LICENSE`).
+- Photographic media in `/works` are not covered by MIT and are licensed separately (see `/works/LICENSE`).
