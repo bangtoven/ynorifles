@@ -1,0 +1,8 @@
+/* The handwritten object and its digital transcription share a row. */
+body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; align-items: start; }
+body::before, body::after, body > * { grid-column: 1 / -1; }
+body > article + figure { grid-column: 2; width: 100%; }
+body > article { grid-column: 1; max-width: 60ch; }
+body article p { white-space: pre-line; }
+body article h2 { margin-top: 0; }
+@media (max-width: 800px) { body { display: block; } }
