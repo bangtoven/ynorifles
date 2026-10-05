@@ -3,15 +3,14 @@ body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-g
 body::before, body::after, body > :not(figure) { grid-column: 1 / -1; }
 body > figure { width: 100%; margin: 1rem 0 2rem; }
 body > figure:has(> img[src="contact-print.jpg"]), body > figure:has(> img[src="installation.jpg"]) { grid-column: 1 / -1; margin: 1rem auto 3rem; }
-body blockquote { max-width: 65ch; margin: 3rem 0 1rem; }
+body blockquote { width: 100%; max-width: 64rem; margin: 1rem auto .5rem; }
 body img { max-height: 70svh; }
 @media (max-width: 480px) {
   body { display: block; }
-  body blockquote { margin: 2rem 0 1rem; }
   /* Keep each encounter closer together than the next encounter. */
   body > figure:has(> img[src*="lomo-"]), body > figure:has(> img[src*="mju-"]) { margin-bottom: .75rem; }
   body > figure:nth-child(even of :has(> img[src^="lomo-"]), :has(> img[src^="mju-"])) { margin-bottom: 3rem; }
 }
 blockquote p { font-style: italic; }
-blockquote + p { max-width: 65ch; margin-top: 0; text-align: right; font-size: .85rem; }
+blockquote + p { width: 100%; max-width: 64rem; margin: 0 auto 2rem; padding-left: 2rem; font-size: .85rem; }
 blockquote em { text-decoration: underline; }
