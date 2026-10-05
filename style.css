@@ -1,54 +1,53 @@
 /* credit: https://github.com/secretGeek/html_wysiwyg/blob/master/html.css */
 
 * {
-     display:block;
+     box-sizing: border-box;
 }
- a,code,em,strong {
-     display:inline 
-}
- *{
-     font-family:Monospace;
-     text-decoration:none 
-}
+head, title, meta, link, script { display: block; }
 
 /* tags with attributes. */
 
  a[href]::before {
      content: "<a href='" attr(href) "'>" 
 }
- link[rel]::before {
-     content: "<link rel='" attr(rel) "' type='" attr(type)"' href='" attr(href) "'>" 
+a[href][target]::before { content: "<a href='" attr(href) "' target='" attr(target) "'>"; }
+link[rel]::before {
+     content: "<link rel='" attr(rel) "' href='" attr(href) "'>";
 }
-
-/* special escaping for close style */
- style::before {
-     content:'<style>' 
-}
- style::after {
-     content:'<\/style>' 
-}
+link[type]::before { content: "<link rel='" attr(rel) "' type='" attr(type) "' href='" attr(href) "'>"; }
+ul[class]::before { content: "<ul class='" attr(class) "'>"; }
+p[class]::before { content: "<p class='" attr(class) "'>"; }
 
 /* brutify */
- *::before,*::after {
-     color:rgb(136, 18, 128, 0.5);
-     font-weight:100;
-     font-size:0.713em 
+
+*::before, *::after {
+     color: #989898;
+     font: normal 11px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace;
+     overflow-wrap: anywhere;
+     white-space: pre-wrap;
 }
- html {
-     max-width:70ch;
-     padding:2ch;
-     margin:auto;
-     color:#333;
-     font-size:1.2em;
+:root {
+     color: #292929;
+     background: #fff;
+     font: 16px/1.55 ui-monospace, SFMono-Regular, Consolas, monospace;
+     max-width: 88rem;
+     padding: 1.5rem;
+     margin: auto;
 }
- body {
-     margin:0 auto;
-     display:flex;
-     min-height:100%;
-     flex-direction:column;
+body {
+     margin: 0;
 }
+head { margin-bottom: 1rem; overflow-wrap: anywhere; }
+a { color: inherit; text-underline-offset: .2em; overflow-wrap: anywhere; }
+a:focus-visible { outline: 2px solid #555; outline-offset: 5px; }
+h1 a { text-decoration: none; }
+h1, h2, h3 { font-size: 1rem; font-weight: normal; }
 
 /* here is the highly repetitive bit */
+
+html::before, html::after, head::before, head::after, body::before, body::after,
+article::before, article::after,
+blockquote::before, blockquote::after { display: block; }
  html::before {
      content:'<html>' 
 }
@@ -67,18 +66,11 @@
  title::after {
      content:'</title>' 
 }
- link::before {
-     content:'<link>' 
-}
- link::after {
-     content:'</link>' 
-}
  body::before {
      content:'<body>' 
 }
- body::after {
-     margin-top:auto;
-     content:'</body>' 
+body::after {
+     content: '</body>';
 }
  h1::before {
      content:'<h1>' 
@@ -86,43 +78,37 @@
  h1::after {
      content:'</h1>' 
 }
-h1 { text-align: center }
+h1 {
+     margin: 0 0 1.5rem;
+}
  h2::before {
      content:'<h2>' 
 }
  h2::after {
      content:'</h2>' 
 }
+h2 { margin: 2rem 0 1rem; }
+h3::before { content: '<h3>'; }
+h3::after { content: '</h3>'; }
  p::before {
      content:'<p>' 
 }
  p::after {
      content:'</p>' 
 }
- pre::before {
-     display:block;
-     content:'<pre>' 
+pre::before {
+     content: '<pre>';
 }
  pre::after {
      content:'</pre>' 
 }
- code::before {
-     content:'<code>' 
-}
- code::after {
-     content:'</code>' 
-}
+pre { white-space: pre-wrap; font: inherit; }
+body > a:has(> pre), body > a:has(> pre)::before, body > a:has(> pre)::after { display: block; }
  a::before {
      content:'<a>' 
 }
  a::after {
      content:'</a>' 
-}
- aside::before {
-     content:'<aside>' 
-}
- aside::after {
-     content:'</aside>' 
 }
  blockquote::before {
      content:'<blockquote>' 
@@ -130,88 +116,121 @@ h1 { text-align: center }
  blockquote::after {
      content:'</blockquote>' 
 }
+blockquote { margin: 0; }
+blockquote p { margin: .5rem 0; }
  em::before {
      content:'<em>' 
 }
  em::after {
      content:'</em>' 
 }
- strong::before {
-     content:'<strong>' 
-}
- strong::after {
-     content:'</strong>' 
-}
+article::before { content: '<article>'; }
+article::after { content: '</article>'; }
+.lead { max-width: 65ch; }
+footer::before { content: '<footer>'; }
+footer::after { content: '</footer>'; }
+footer { margin-top: 4rem; font-size: .85rem; }
 
 /* list */
+
 ul::before { content:'<ul>' }
 ul::after { content:'</ul>' }
 li::before { content:'<li>' }
 li::after { content:'</li>' }
-ul { padding: 0 }
-li {
-    margin: 0.5ch;
-    border-bottom: 1px dotted rgba(136, 18, 128, 0.1);
-    position: relative;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M4 2 L10 7 L4 12' fill='none' stroke='%23c392bc' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+ul {
+     padding-left: 1.25rem;
+}
+ul::before, ul::after, li::before, li::after,
+footer::before, footer::after, pre::before, pre::after { display: block; }
+
+/* Home: photographs identify the works; each image and title share one link. */
+
+.work-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 2.5rem;
+  list-style: none; padding: 0; margin: 0 0 1.5rem; }
+.work-list::before, .work-list::after { grid-column: 1 / -1; }
+.work-list li {
+    min-width: 0;
+    padding-right: 2ch;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M4 2 L10 7 L4 12' fill='none' stroke='%23989898' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.7ch center;
     background-size: 1.1ch 1.1ch;
 }
-p { margin: 0.5ch 0 }
+.work-list a { font-size: .875rem; }
+.work-list a:hover { text-decoration: underline; }
+.work-list figure { max-width: 100%; }
+.work-list img { height: 19rem; margin: .4rem 0 .75rem; object-position: left center; }
+p {
+     margin: 1rem 0;
+}
 
 /* image */
-img {
-    margin: 0 auto;
-    max-width: 100%;
-    height: auto;
-}
-figure[src]::before { content: "<img src='"attr(src)"'"}
-figure[src]::after { content: "/>" }
 
-div[class]::before { content: "<div class='" attr(class) "'>" }
-div[class]::after { content:'</div>' }
-.carousel {
-    overflow-x: auto;
-    white-space: nowrap;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-}
-.carousel::before,.carousel::after { 
+img {
     display: block;
-    position: sticky;
-    left: 0;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 76svh;
+    margin: auto;
+    object-fit: contain;
 }
-.carousel figure {
-    margin: 0;
-    display: inline-block;
-    scroll-snap-align: center;
-    vertical-align: top;
-}
-.carousel::-webkit-scrollbar {
-    display: none;
+body > figure { max-width: 64rem; margin: 1rem auto 3rem; }
+figure { margin: 0; }
+figure, a:has(> figure) { display: block; text-decoration: none; min-width: 0; }
+figure::before, figure::after, a:has(> figure)::before, a:has(> figure)::after { display: block; }
+figure::before, a:has(> figure)::before { padding-bottom: .4rem; }
+figure::after, a:has(> figure)::after { padding-top: .2rem; }
+figure[src]::before {
+     content: "<img src='" attr(src) "'>";
 }
 
 /* ironic */
+
 yf::before { content: 'self ' }
-yf { 
-    display: inline-block; 
+yf {
+    display: inline-block;
     transform: scaleX(-1);
+    font-weight: bold;
 }
 yf::before, yf::after {
-    color:#333;
-    font-size:1em;
+    color:inherit;
+    font:inherit;
 }
 yf::after  { content: 'irony' }
 
 /* header */
-script[verymuchunique]::before { content: "<script src='" attr(src) "'></script>" }
+
+script[defer]::before { content: "<script defer src='" attr(src) "'>"; }
+script[verymuchunique]::before {
+     content: "<script defer src='" attr(src) "' verymuchunique>";
+}
+script::after { content: '</script>'; }
+meta[charset]::before { content: "<meta charset='" attr(charset) "'>"; }
 meta[name]::before { content: "<meta name='" attr(name) "' content='" attr(content) "'>" }
-nav a { display:block; }
-nav::before { content:'<nav>'; }
-nav::after { content:'</nav>'; }
+nav { font-size: .875rem; margin-bottom: 1.5rem; }
+nav a {
+     font-weight: bold;
+     text-decoration: none;
+}
+nav a:hover { text-decoration: underline; }
+nav::before {
+     content: '<nav>';
+     display: block;
+}
+nav::after {
+     content: '</nav>';
+     display: block;
+}
 
 /* flip */
-html { transform: scaleX(-1) }
+
+:root { transform: scaleX(-1) }
 body { transform: scaleX(-1) }
+@media (max-width: 480px) {
+    :root { padding: .75rem; font-size: 15px; }
+}
+@media (max-width: 640px) {
+    .work-list { grid-template-columns: 1fr; gap: 2rem; }
+    .work-list img { height: auto; max-height: 45svh; }
+}
