@@ -1,0 +1,10 @@
+/* The first four locations pair the earlier photograph with its later return. */
+body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; align-items: start; }
+body::before, body::after, body > :not(figure) { grid-column: 1 / -1; }
+body > figure { width: 100%; margin: 1rem 0 2rem; }
+body img { max-height: 80svh; }
+@media (max-width: 480px) {
+  body { display: block; }
+  body > figure:has(+ figure:has(> img[src$="-later.jpg"])) { margin-bottom: .75rem; }
+  body > figure:has(> img[src$="-later.jpg"]) { margin-bottom: 3rem; }
+}
